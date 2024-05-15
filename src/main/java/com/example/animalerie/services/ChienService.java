@@ -55,5 +55,22 @@ public class ChienService implements IChienService {
         repository.saveAndFlush(bestiole);
     }
 
+    public void delete(Integer id){
+        repository.deleteById(id);
+    }
+
+    public void modify (Integer id, InChienDto dto){
+        //récupère l'animal qui correspond au dto
+        AnimauxEntity bestiole = repository.findById(id).get();
+
+        bestiole.setEspece(dto.getEspece());
+        bestiole.setDateNaissance(dto.getDate_naissance());
+        bestiole.setNom(dto.getNom());
+        bestiole.setSexe(dto.getSexe());
+        bestiole.setTaille(dto.getTaille());
+        bestiole.setPoids(dto.getPoids());
+
+        repository.saveAndFlush(bestiole);
+    }
 
 }

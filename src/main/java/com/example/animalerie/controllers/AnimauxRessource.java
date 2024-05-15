@@ -38,4 +38,28 @@ public class AnimauxRessource {
         return new ResponseEntity("Clébard  ajouté", HttpStatusCode.valueOf(200));
     }
 
+    @GetMapping("/delete/{id}")
+    public ResponseEntity delete(@PathVariable String id){
+        Integer idInt = null;
+        try {
+            idInt = Integer.parseInt(id);
+        }catch (Exception e) {
+            return new ResponseEntity("l'id n'est pas bon", HttpStatusCode.valueOf(500));
+        }
+
+        chienService.delete(idInt);
+        return new ResponseEntity("C'est supprimé", HttpStatusCode.valueOf(200));
+    }
+
+    @PostMapping("/modify/{id}")
+    public ResponseEntity modifiy(@PathVariable String id, @RequestBody InChienDto inDto){
+        Integer idInt = null;
+        try {
+            idInt = Integer.parseInt(id);
+        }catch (Exception e) {
+            return new ResponseEntity("l'id n'est pas bon", HttpStatusCode.valueOf(500));
+        }
+        service.modify(idInt, inDto);
+        return new ResponseEntity("Clébard  modifié", HttpStatusCode.valueOf(200));
+    }
 }
