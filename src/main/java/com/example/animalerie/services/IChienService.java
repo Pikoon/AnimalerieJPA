@@ -1,5 +1,6 @@
 package com.example.animalerie.services;
 
+import com.example.animalerie.dtos.InChienDto;
 import com.example.animalerie.dtos.OutChienDto;
 import com.example.animalerie.entities.AnimauxEntity;
 
@@ -12,4 +13,6 @@ public interface IChienService {
     OutChienDto toDto (AnimauxEntity entity);
 
     OutChienDto get(Integer id);
+
+    void ajouter(InChienDto dto);
 }

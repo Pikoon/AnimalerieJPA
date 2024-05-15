@@ -1,5 +1,6 @@
 package com.example.animalerie.services;
 
+import com.example.animalerie.dtos.InChienDto;
 import com.example.animalerie.dtos.OutChienDto;
 import com.example.animalerie.entities.AnimauxEntity;
 import com.example.animalerie.repositories.IAnimauxRepository;
@@ -41,5 +42,18 @@ public class ChienService implements IChienService {
     public OutChienDto get(Integer id) {
         return toDto(repository.findById(id).get());
     }
+
+    @Override
+    public void ajouter(InChienDto dto) {
+        AnimauxEntity bestiole = new AnimauxEntity();
+        bestiole.setEspece(dto.getEspece());
+        bestiole.setDateNaissance(dto.getDate_naissance());
+        bestiole.setNom(dto.getNom());
+        bestiole.setSexe(dto.getSexe());
+        bestiole.setTaille(dto.getTaille());
+        bestiole.setPoids(dto.getPoids());
+        repository.saveAndFlush(bestiole);
+    }
+
 
 }
